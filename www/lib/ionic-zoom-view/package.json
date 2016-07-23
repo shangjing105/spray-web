@@ -1,0 +1,33 @@
+{
+  "name": "ionic-zoom-view",
+  "version": "1.0.0",
+  "description": "When a user taps an image, open a modal to let him zoom in/out",
+  "main": "dist/ionic-zoom-view.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexDisler/ionic-zoom-view.git"
+  },
+  "keywords": [
+    "ionic",
+    "cordova",
+    "angular",
+    "zoom",
+    "image"
+  ],
+  "author": "Alex Disler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexDisler/ionic-zoom-view/issues"
+  },
+  "homepage": "https://github.com/AlexDisler/ionic-zoom-view",
+  "dependencies": {
+    "gulp": "3.8.11",
+    "gulp-babel": "4.0.0",
+    "gulp-concat": "2.5.2",
+    "gulp-ng-annotate": "0.5.2",
+    "gulp-plumber": "1.0.0"
+  }
+}

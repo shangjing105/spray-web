@@ -1,0 +1,36 @@
+<ion-header-bar class="bar-calm">
+  <h1 class="title">水花头条</h1>
+</ion-header-bar>
+
+<ion-view>
+  <ion-content>
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      pulling-icon="ion-loading-c"
+      refreshing-text="刷新成功"
+      refreshing-icon="ion-loading-c"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="new in news.content" type="item-text-wrap"
+                href="#/tab/jingxuan/{{new.id}}">
+          <img ng-src="{{new.sourceImage}}"/>
+          <!--<span style="float: left;font-size: 5px">今日头条</span>-->
+          <h2>{{ new.title | limitTo: 40 }}{{new.title.length > 40 ? '...' : ''}}</h2>
+          <!--<div><h3>{{ new.info}}</h3></div>-->
+          <p>by {{new.author}} | {{new.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
+          <i class="icon icon-dianzan" style="height:50px; padding-top: 10px"></i>
+          <i class="icon" style="padding-top: 50px;font-size: 20px;width: 32px;color: #387ef5;">12</i>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll
+      icon="ion-loading-c"
+      ng-if="moreDataCanBeLoaded()"
+      on-infinite="loadMoreData()"
+      distance="10%">
+    </ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>

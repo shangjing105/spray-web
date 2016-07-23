@@ -1,0 +1,25 @@
+div.meitu3 {
+  min-width: 125px;
+  height: 175px;
+  margin-right: 2px;
+  margin-bottom: 1px;
+  float: left;
+}
+div .meitu{
+  min-width: 125px;
+  height: 278px;
+  margin-right: 2px;
+}
+div.meitu2 {
+  min-width: 125px;
+  height: 175px;
+  margin-bottom: 1px;
+  float: left;
+}
+div.meitu1 {
+  min-width: 250px;
+  height: 350px;
+  margin-right: 2px;
+  margin-bottom: 1px;
+  float: left;
+}

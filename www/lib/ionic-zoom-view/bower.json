@@ -1,0 +1,25 @@
+{
+  "name": "ionic-zoom-view",
+  "version": "2.0.0",
+  "homepage": "https://github.com/AlexDisler/ionic-zoom-view",
+  "authors": [
+    "Alex Disler <alexdisler@gmail.com>"
+  ],
+  "description": "When a user taps an image, open a modal to let him zoom in/out",
+  "main": "dist/ionic-zoom-view.js",
+  "keywords": [
+    "ionic",
+    "cordova",
+    "angular",
+    "image",
+    "zoom"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
