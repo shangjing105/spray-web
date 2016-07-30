@@ -1,6 +1,8 @@
 // Ionic Starter App
 
-var baseUrl="http://192.168.34.134:8200";
+// var baseUrl="http://localhost:8200/api";
+var baseUrl="http://45.78.57.4:8200/api";
+
 
 var app=angular.module('starter', ['ionic', 'starter.controllers',
                                   'starter.newsController', 'starter.newsService',
@@ -20,7 +22,18 @@ var app=angular.module('starter', ['ionic', 'starter.controllers',
     });
   })
 
-  app.config(function ($stateProvider, $urlRouterProvider,$sceDelegateProvider) {
+  app.config(function ($stateProvider, $urlRouterProvider,$sceDelegateProvider,$ionicConfigProvider) {
+    //解决android菜单在底部问题
+    $ionicConfigProvider.platform.ios.tabs.style('standard');
+    $ionicConfigProvider.platform.ios.tabs.position('bottom');
+    $ionicConfigProvider.platform.android.tabs.style('standard');
+    $ionicConfigProvider.platform.android.tabs.position('bottom');
+    $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
+    $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+    $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
+    $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
+    $ionicConfigProvider.platform.ios.views.transition('ios');
+    $ionicConfigProvider.platform.android.views.transition('android');
 
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
