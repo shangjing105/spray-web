@@ -2,9 +2,11 @@
   //精选
   newsController.controller('DashCtrl', function ($scope, newsService,$timeout) {
     $scope.news=[];
+    $scope.last=false;
     newsService.news().success(function (data) {
       if (data.result.status==200) {
         $scope.news = data.news;
+        $scope.last=data.last;
       }
     });
     //下拉刷新
@@ -12,7 +14,8 @@
       newsService.params.page=0;
       newsService.news().success(function (data) {
         if (data.result.status==200) {
-          $scope.news = data.news.concat($scope.news);
+          $scope.news=data.news;
+          $scope.last=data.last;
         }
       }).finally(function() {
         // 停止广播ion-refresher
@@ -23,7 +26,8 @@
     $scope.loadMoreData =function () {
       // 这里使用定时器,使加载不用太快
       $timeout(function () {
-        if ($scope.news.last) {
+        console.log("----"+$scope.last);
+        if ($scope.last) {
           $scope.$broadcast('scroll.infiniteScrollComplete');
           return;
         }
@@ -31,9 +35,10 @@
         newsService.params.page++;
         newsService.news().success(function (data) {
           if (data.result.status==200) {
-            for (var i=0;i<data.news.content.length;i++) {
-              $scope.news.content.push(data.news.content[i]);
+            for (var i=0;i<data.news.length;i++) {
+              $scope.news.push(data.news[i]);
             }
+            $scope.last=data.last;
           }
         }).finally(function() {
           // 停止广播ion-refresher
@@ -43,7 +48,7 @@
     };
     //没有更多数据
     $scope.moreDataCanBeLoaded =function () {
-      return !($scope.news.last);
+      return !($scope.last);
     };
 
     $scope.$on('stateChangeSuccess', function() {

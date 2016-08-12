@@ -1,7 +1,7 @@
 // Ionic Starter App
 
-// var baseUrl="http://localhost:8200/api";
-var baseUrl="http://45.78.57.4:8200/api";
+var baseUrl="http://localhost:8200/api";
+// var baseUrl="http://45.78.57.4:8200/api";
 
 
 var app=angular.module('starter', ['ionic', 'starter.controllers',

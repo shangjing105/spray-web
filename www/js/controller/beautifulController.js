@@ -2,12 +2,12 @@
 
   //美图controller
   beautifulController.controller('MiTusCtrl', function ($scope, beautifulService,$timeout) {
-    $scope.beautiful=[];
+    $scope.last=false;
     $scope.beautifulList=[];
     beautifulService.beautiful().success(function (data) {
       if (data.result.status==200) {
-        $scope.beautiful = data.beautiful;
         $scope.beautifulList=data.beautifulList;
+        $scope.last = data.last;
       }
     });
 
@@ -16,8 +16,8 @@
       beautifulService.params.page=0;
       beautifulService.beautiful().success(function (data) {
         if (data.result.status==200) {
-          $scope.beautiful = data.beautiful.concat($scope.beautiful);
-          $scope.beautifulList=data.beautifulList.concat($scope.beautifulList);
+          $scope.beautifulList=data.beautifulList;
+          $scope.last = data.last;
         }
       }).finally(function() {
         // 停止广播ion-refresher
@@ -28,7 +28,7 @@
     $scope.loadMoreData =function () {
       // 这里使用定时器,使加载不用太快
       $timeout(function () {
-        if ($scope.beautiful.last) {
+        if ($scope.last) {
           $scope.$broadcast('scroll.infiniteScrollComplete');
           return;
         }
@@ -38,6 +38,7 @@
           if (data.result.status==200) {
             for (var i=0;i<data.beautifulList.length;i++) {
               $scope.beautifulList.push(data.beautifulList[i]);
+              $scope.last = data.last;
             }
           }
         }).finally(function() {
@@ -48,7 +49,7 @@
     };
     //没有更多数据
     $scope.moreDataCanBeLoaded =function () {
-      return !($scope.beautiful.last);
+      return !($scope.last);
     };
 
     $scope.$on('stateChangeSuccess', function() {

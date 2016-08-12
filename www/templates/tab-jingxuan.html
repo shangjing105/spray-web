@@ -13,15 +13,15 @@
     </ion-refresher>
 
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="new in news.content" type="item-text-wrap"
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="new in news" type="item-text-wrap"
                 href="#/tab/jingxuan/{{new.id}}">
-          <img ng-src="{{new.sourceImage}}"/>
+          <img ng-src="{{new.sources.sourceImage}}"/>
           <!--<span style="float: left;font-size: 5px">今日头条</span>-->
-          <h2>{{ new.title | limitTo: 40 }}{{new.title.length > 40 ? '...' : ''}}</h2>
+          <h2>{{ new.title | limitTo: 60 }}{{new.title.length > 60 ? '...' : ''}}</h2>
           <!--<div><h3>{{ new.info}}</h3></div>-->
           <p>by {{new.author}} | {{new.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
-          <i class="icon icon-dianzan" style="height:50px; padding-top: 10px"></i>
-          <i class="icon" style="padding-top: 50px;font-size: 20px;width: 32px;color: #387ef5;">12</i>
+        <!--  <i class="icon icon-dianzan" style="height:50px; padding-top: 10px"></i>
+          <i class="icon" style="padding-top: 50px;font-size: 20px;width: 32px;color: #387ef5;">12</i>-->
       </ion-item>
     </ion-list>
 
