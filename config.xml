@@ -9,6 +9,13 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <platform name="ios">
+    <config-file platform="ios" target="*-Info.plist" parent="NSAppTransportSecurity">
+      <dict>
+        <key>NSAllowsArbitraryLoads</key><true/>
+      </dict>
+    </config-file>
+  </platform>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

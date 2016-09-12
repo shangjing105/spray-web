@@ -1,10 +1,8 @@
   var beautifulService=angular.module('starter.beautifulService', []);
 
   beautifulService.factory('beautifulService', ['$http',function($http) {
-    var params={};
-    params.page=0;params.size=12;
 
-    function beautiful() {
+    function beautiful(params) {
       return $http({
         method: 'GET',
         url: baseUrl+'/beautiful',
@@ -16,7 +14,6 @@
     };
 
     return{
-      params:params,
       beautiful:beautiful
     }
 

@@ -1,0 +1,40 @@
+<ion-header-bar class="bar-calm">
+  <h1 class="title">美图</h1>
+</ion-header-bar>
+
+<ion-view>
+  <ion-content>
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      pulling-icon="ion-loading-c"
+      refreshing-text="刷新成功"
+      refreshing-icon="ion-loading-c"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list ng-repeat="beaut in beautifulList">
+      <ion-item class="row" ng-if="$index%2==0" style="padding:1px;border-style: none;">
+        <div class="meitu3" ng-repeat="items in beaut.items3">
+          <img style="width: 100%; height: 100%" ng-src="{{items.link}}" src="{{items.link}}" zoom-src="{{items.link}}" zoom-view>
+        </div>
+      </ion-item>
+      <ion-item class="row" ng-if="$index%2!=0" style="padding:1px;border-style: none;">
+        <div class="meitu">
+          <div class="meitu2" ng-repeat="items in beaut.items2">
+            <img style="width: 100%; height: 100%" ng-src="{{items.link}}" src="{{items.link}}" zoom-src="{{items.link}}" zoom-view>
+          </div>
+        </div>
+        <div class="meitu1" style="width: 267px" ng-repeat="items in beaut.items1">
+          <img style="width: 100%; height: 100%" ng-src="{{items.link}}" src="{{items.link}}" zoom-src="{{items.link}}" zoom-view>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll
+      icon="ion-loading-c"
+      ng-if="!last"
+      on-infinite="loadMoreData()"
+      distance="10%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

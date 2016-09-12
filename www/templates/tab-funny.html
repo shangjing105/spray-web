@@ -1,0 +1,31 @@
+<ion-header-bar class="bar-calm">
+  <h1 class="title">搞笑</h1>
+</ion-header-bar>
+
+<ion-view>
+  <ion-content>
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      pulling-icon="ion-loading-c"
+      refreshing-text="刷新成功"
+      refreshing-icon="ion-loading-c"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+   <ion-list >
+     <ion-item class="item-gaoxiao" ng-repeat="f in funny" on-hold="copyText('{{f.content}}')">
+       <p>
+         {{ f.content }}
+       </p>
+       <p style="float: right">{{f.author}} | {{f.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
+     </ion-item>
+   </ion-list>
+
+    <ion-infinite-scroll
+      icon="ion-loading-c"
+      ng-if="!last"
+      on-infinite="loadMoreData()"
+      distance="10%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

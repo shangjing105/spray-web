@@ -23,3 +23,9 @@ div.meitu1 {
   margin-bottom: 1px;
   float: left;
 }
+.tab-item .icon {
+  font-size: 26px;
+}
+.item-gaoxiao p {
+  white-space:normal;
+}

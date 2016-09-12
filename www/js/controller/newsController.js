@@ -1,18 +1,19 @@
   var newsController=angular.module('starter.newsController', []);
   //精选
-  newsController.controller('DashCtrl', function ($scope, newsService,$timeout) {
-    $scope.news=[];
+  newsController.controller('newsCtrl', function ($scope,$state, newsService,$timeout) {
     $scope.last=false;
-    newsService.news().success(function (data) {
+    $scope.news=[];
+    $scope.params={page:0,size:10};
+    newsService.news($scope.params).success(function (data) {
       if (data.result.status==200) {
-        $scope.news = data.news;
+        $scope.news=data.news;
         $scope.last=data.last;
       }
     });
     //下拉刷新
     $scope.doRefresh =function () {
-      newsService.params.page=0;
-      newsService.news().success(function (data) {
+      $scope.params.page=0;
+      newsService.news($scope.params).success(function (data) {
         if (data.result.status==200) {
           $scope.news=data.news;
           $scope.last=data.last;
@@ -26,14 +27,13 @@
     $scope.loadMoreData =function () {
       // 这里使用定时器,使加载不用太快
       $timeout(function () {
-        console.log("----"+$scope.last);
         if ($scope.last) {
           $scope.$broadcast('scroll.infiniteScrollComplete');
           return;
         }
         //加载更多
-        newsService.params.page++;
-        newsService.news().success(function (data) {
+        $scope.params.page+=1;
+        newsService.news($scope.params).success(function (data) {
           if (data.result.status==200) {
             for (var i=0;i<data.news.length;i++) {
               $scope.news.push(data.news[i]);
@@ -42,29 +42,72 @@
           }
         }).finally(function() {
           // 停止广播ion-refresher
-          $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('scroll.infiniteScrollComplete');
         });
       },1000);
-    };
-    //没有更多数据
-    $scope.moreDataCanBeLoaded =function () {
-      return !($scope.last);
     };
 
     $scope.$on('stateChangeSuccess', function() {
       $scope.loadMoreData();
     });
+
+    $scope.openBrowser=function (id,explicitLink,link) {
+      if (explicitLink) {
+        cordova.ThemeableBrowser.open(link, '_blank', {
+          statusbar: {
+            color: '#ffffff'
+          },
+          toolbar: {
+            height: 44,
+            color: '#56ad9b'
+          },
+          title: {
+            color: '#ffffff',
+            staticText:'详情'
+          },
+          closeButton: {
+            wwwImage: '/img/browser-close.png',
+            wwwImagePressed: '/img/browser-close.png',
+            wwwImageDensity: 3,
+            align: 'left',
+            event: 'closePressed'
+          },
+          backButton: {
+            wwwImage: '/img/browser-back.png',
+            wwwImagePressed: '/img/browser-back.png',
+            wwwImageDensity: 3,
+            align: 'left',
+            event: 'backPressed'
+          },
+          forwardButton: {
+            wwwImage: '/img/browser-forward.png',
+            wwwImagePressed: '/img/browser-forward.png',
+            wwwImageDensity: 3,
+            align: 'left',
+            event: 'forwardPressed'
+          },
+          backButtonCanClose: true
+        }).addEventListener('backPressed', function(e) {
+          // alert('back pressed');
+        }).addEventListener(cordova.ThemeableBrowser.EVT_ERR, function(e) {
+          console.error(e.message);
+        }).addEventListener(cordova.ThemeableBrowser.EVT_WRN, function(e) {
+          console.log(e.message);
+        });
+      }else {
+        $state.go("tab.news-view",{
+          id: id
+        });
+      }
+    };
   });
 
 
   //精选详情
-  newsController.controller('DashViewCtrl', function ($scope, $stateParams, newsService,$sce) {
+  newsController.controller('newsViewCtrl', function ($scope, $stateParams, newsService) {
     newsService.newsDetails($stateParams.id).success(function (data) {
       if (data.result.status==200) {
-        $scope.chat = data.news;
-        if(data.news.explicitLink) {//是否是链接
-          $scope.openUrl = $sce.trustAsResourceUrl(data.news.link);
-        }
+          $scope.news = data.news;
       }
     });
   });

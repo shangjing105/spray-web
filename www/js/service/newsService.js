@@ -2,10 +2,7 @@
 
   //精选service
   newsService.factory('newsService', ['$http',function($http) {
-    var params={};
-    params.page=0; params.size=12;
-
-    function news() {
+    function news(params) {
       return $http({
         method: 'GET',
         url: baseUrl+'/news',
@@ -27,7 +24,6 @@
     };
 
     return{
-      params:params,
       news:news,
       newsDetails:newsDetails
     };

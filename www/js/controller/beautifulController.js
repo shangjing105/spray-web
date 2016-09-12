@@ -1,20 +1,20 @@
   var beautifulController=angular.module('starter.beautifulController', []);
 
   //美图controller
-  beautifulController.controller('MiTusCtrl', function ($scope, beautifulService,$timeout) {
+  beautifulController.controller('beautifulCtrl', function ($scope, beautifulService,$timeout) {
     $scope.last=false;
     $scope.beautifulList=[];
-    beautifulService.beautiful().success(function (data) {
+    $scope.params={page:0,size:12};
+    beautifulService.beautiful($scope.params).success(function (data) {
       if (data.result.status==200) {
         $scope.beautifulList=data.beautifulList;
         $scope.last = data.last;
       }
     });
-
     //下拉刷新
     $scope.doRefresh =function () {
-      beautifulService.params.page=0;
-      beautifulService.beautiful().success(function (data) {
+      $scope.params.page=0;
+      beautifulService.beautiful($scope.params).success(function (data) {
         if (data.result.status==200) {
           $scope.beautifulList=data.beautifulList;
           $scope.last = data.last;
@@ -33,23 +33,19 @@
           return;
         }
         //加载更多
-        beautifulService.params.page++;
-        beautifulService.beautiful().success(function (data) {
+        $scope.params.page+=1;
+        beautifulService.beautiful($scope.params).success(function (data) {
           if (data.result.status==200) {
             for (var i=0;i<data.beautifulList.length;i++) {
               $scope.beautifulList.push(data.beautifulList[i]);
-              $scope.last = data.last;
             }
+            $scope.last = data.last;
           }
         }).finally(function() {
           // 停止广播ion-refresher
-          $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('scroll.infiniteScrollComplete');
         });
       },1000);
-    };
-    //没有更多数据
-    $scope.moreDataCanBeLoaded =function () {
-      return !($scope.last);
     };
 
     $scope.$on('stateChangeSuccess', function() {

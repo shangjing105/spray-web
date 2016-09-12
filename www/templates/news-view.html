@@ -1,0 +1,27 @@
+<ion-header-bar class="bar-calm">
+  <div class="buttons">
+    <button ui-sref="tab.news" class="button back-button buttons button-clear header-item">
+      <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title hide">精选</span>
+      </span>
+    </button>
+  </div>
+  <h1 class="title">详情</h1>
+</ion-header-bar>
+
+<ion-view view-title="{{news.title}}">
+  <ion-content class="padding" id="ion_content" scroll="true" overflow-scroll="true" style="-webkit-overflow-scrolling: touch !important; overflow-y: scroll !important; z-index: -1;">
+      <div ng-if="(news.explicitLink)" style="width: 100%;height: 100%" id="div_content">
+        <div ng-bind="open()"></div>
+      </div>
+
+      <div ng-if="!(news.explicitLink)">
+        <h3>{{news.title}}</h3>
+        <br><br>
+        <p>
+          {{news.content}}
+        </p>
+      </div>
+  </ion-content>
+</ion-view>

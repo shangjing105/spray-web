@@ -1,12 +1,12 @@
 // Ionic Starter App
 
 var baseUrl="http://localhost:8200/api";
-// var baseUrl="http://45.78.57.4:8200/api";
 
 
-var app=angular.module('starter', ['ionic', 'starter.controllers',
+var app=angular.module('starter', ['ionic', 'ngCordova','starter.controllers',
                                   'starter.newsController', 'starter.newsService',
-                                  'starter.beautifulController', 'starter.beautifulService','ionic-zoom-view' ]);
+                                  'starter.beautifulController', 'starter.beautifulService','ionic-zoom-view',
+                                  'starter.funnyController', 'starter.funnyService' ]);
 
   app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -35,10 +35,6 @@ var app=angular.module('starter', ['ionic', 'starter.controllers',
     $ionicConfigProvider.platform.ios.views.transition('ios');
     $ionicConfigProvider.platform.android.views.transition('android');
 
-    $sceDelegateProvider.resourceUrlWhitelist([
-      'self',
-      'http://toutiao.com/**']);
-
     $stateProvider
       .state('tab', {
         url: '/tab',
@@ -46,56 +42,57 @@ var app=angular.module('starter', ['ionic', 'starter.controllers',
         templateUrl: 'templates/tabs.html'
       })
 
-      .state('tab.jingxuan', {
-        url: '/jingxuan',
+      .state('tab.news', {
+        url: '/news',
         views: {
-          'tab-jingxuan': {
-            templateUrl: 'templates/tab-jingxuan.html',
-            controller: 'DashCtrl'
+          'tab-news': {
+            templateUrl: 'templates/tab-news.html',
+            controller: 'newsCtrl'
           }
         }
       })
 
-      .state('tab.jingxuan-view', {
-        url: '/jingxuan/:id',
+      .state('tab.news-view', {
+        url: '/news/:id',
         views: {
-          'tab-jingxuan': {
-            templateUrl: 'templates/jingxuan-view.html',
-            controller: 'DashViewCtrl'
+          'tab-news': {
+            templateUrl: 'templates/news-view.html',
+            controller: 'newsViewCtrl'
           }
         }
       })
 
-      .state('tab.meitu', {
-        url: '/meitu',
+      .state('tab.beautiful', {
+        url: '/beautiful',
         views: {
-          'tab-meitu': {
-            templateUrl: 'templates/tab-meitu.html',
-            controller: 'MiTusCtrl'
+          'tab-beautiful': {
+            templateUrl: 'templates/tab-beautiful.html',
+            controller: 'beautifulCtrl'
           }
         }
       })
 
-      .state('tab.yuanfen', {
-        url: '/yuanfen',
+      .state('tab.fate', {
+        url: '/fate',
         views: {
-          'tab-yuanfen': {
-            templateUrl: 'templates/tab-yuanfen.html',
-            controller: 'FateCtrl'
+          'tab-fate': {
+            templateUrl: 'templates/tab-fate.html',
+            controller: 'fateCtrl'
           }
         }
       })
 
-      .state('tab.wode', {
-        url: '/wode',
+      .state('tab.funny', {
+        url: '/funny',
         views: {
-          'tab-wode': {
-            templateUrl: 'templates/tab-wode.html',
-            controller: 'AccountCtrl'
+          'tab-funny': {
+            templateUrl: 'templates/tab-funny.html',
+            controller: 'funnyCtrl'
           }
         }
       });
 
-    $urlRouterProvider.otherwise('/tab/jingxuan');
+    $urlRouterProvider.otherwise('/tab/news');
+
 
   });
