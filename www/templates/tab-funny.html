@@ -1,8 +1,5 @@
-<ion-header-bar class="bar-calm">
-  <h1 class="title">搞笑</h1>
-</ion-header-bar>
 
-<ion-view>
+<ion-view view-title="搞笑">
   <ion-content>
     <ion-refresher
       pulling-text="下拉刷新..."
@@ -12,14 +9,21 @@
       on-refresh="doRefresh()">
     </ion-refresher>
 
-   <ion-list >
-     <ion-item class="item-gaoxiao" ng-repeat="f in funny" on-hold="copyText('{{f.content}}')">
-       <p>
-         {{ f.content }}
-       </p>
-       <p style="float: right">{{f.author}} | {{f.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
-     </ion-item>
-   </ion-list>
+    <div class="list card funny-bj" ng-repeat="f in funny" on-hold="copyText('{{f.content}}')">
+      <div class="item item-text-wrap funny-bj">
+       <h3 style="color: initial"> {{ f.content }}</h3>
+        <p style="float: right"> {{f.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
+      </div>
+    </div>
+
+   <!--<ion-list >-->
+     <!--<ion-item class="item-gaoxiao" ng-repeat="f in funny" on-hold="copyText('{{f.content}}')">-->
+       <!--<p>-->
+         <!--{{ f.content }}-->
+       <!--</p>-->
+       <!--<p style="float: right"> {{f.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>-->
+     <!--</ion-item>-->
+   <!--</ion-list>-->
 
     <ion-infinite-scroll
       icon="ion-loading-c"

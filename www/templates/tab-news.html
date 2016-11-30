@@ -1,36 +1,31 @@
-<ion-header-bar class="bar-calm">
-  <h1 class="title">水花一现</h1>
-</ion-header-bar>
+<ion-view view-title="水花一现">
+  <ion-slide-box show-pager="false" on-slide-changed="slideChanged($index)" active-slide="currentIndex">
+    <ion-slide ng-repeat="ty in type">
+      <ion-content>
+        <ion-refresher pulling-text="下拉刷新..." refreshing-text="刷新成功" on-refresh="ty.doRefresh()"></ion-refresher>
 
-<ion-view>
-  <ion-content>
-    <ion-refresher
-      pulling-text="下拉刷新..."
-      pulling-icon="ion-loading-c"
-      refreshing-text="刷新成功"
-      refreshing-icon="ion-loading-c"
-      on-refresh="doRefresh()">
-    </ion-refresher>
+        <!--<div class="list has-header">-->
+          <!--<a ng-repeat="new in ty.newsList" class="item item-thumbnail-right item-text-wrap" href="#">-->
+            <!--<img ng-src="{{new.sources.sourceImage}}" width="30" height="30" alt="">-->
+            <!--{{new.title}}-->
+          <!--</a>-->
+        <!--</div>-->
 
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="new in news" type="item-text-wrap"
-                ng-click="openBrowser('{{new.id}}',{{new.explicitLink}},'{{new.link}}')">
-          <img ng-src="{{new.sources.sourceImage}}"/>
-          <!--<span style="float: left;font-size: 5px">今日头条</span>-->
-          <h2>{{ new.title | limitTo: 60 }}{{new.title.length > 60 ? '...' : ''}}</h2>
-          <!--<div><h3>{{ new.info}}</h3></div>-->
-          <p>by {{new.author}} | {{new.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
-        <!--  <i class="icon icon-dianzan" style="height:50px; padding-top: 10px"></i>
-          <i class="icon" style="padding-top: 50px;font-size: 20px;width: 32px;color: #387ef5;">12</i>-->
-      </ion-item>
-    </ion-list>
+        <ion-list class="newsList">
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="new in ty.newsList" type="item-text-wrap"
+                    ng-click="openBrowser('{{new.id}}',{{new.explicitLink}},'{{new.link}}')">
+            <img ng-src="{{new.sources.sourceImage}}"/>
+            <h2>{{ new.title | limitTo: 60 }}{{new.title.length > 60 ? '...' : ''}}</h2>
+            <p>{{new.createDate | date: 'yyyy-MM-dd HH:mm'}}</p>
+          </ion-item>
+        </ion-list>
 
-    <ion-infinite-scroll
-      icon="ion-loading-c"
-      ng-if="!last"
-      on-infinite="loadMoreData()"
-      distance="10%">
-    </ion-infinite-scroll>
+        <ion-infinite-scroll  ng-if="!(ty.last)" on-infinite="ty.loadMoreData()" distance="1%"></ion-infinite-scroll>
+      </ion-content>
+    </ion-slide>
+  </ion-slide-box>
 
-  </ion-content>
+  <ion-tabs class="tabs-striped tabs-top">
+    <ion-tab ng-repeat="ty in type" on-select="selectedTab($index)" title="{{ty.name}}"></ion-tab>
+  </ion-tabs>
 </ion-view>

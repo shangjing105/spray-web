@@ -1,16 +1,17 @@
 // Ionic Starter App
 
-var baseUrl="http://localhost:8200/api";
+var baseUrl="http://pro.shuihua.me/api";
+// var baseUrl="http://localhost:8200/api";
 
 
-var app=angular.module('starter', ['ionic', 'ngCordova','starter.controllers',
+var app=angular.module('starter', ['ionic', 'ngCordova','starter.fateController',
                                   'starter.newsController', 'starter.newsService',
                                   'starter.beautifulController', 'starter.beautifulService','ionic-zoom-view',
-                                  'starter.funnyController', 'starter.funnyService' ]);
+                                  'starter.funnyController', 'starter.funnyService'
+                                  ]);
 
   app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
-
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -35,6 +36,8 @@ var app=angular.module('starter', ['ionic', 'ngCordova','starter.controllers',
     $ionicConfigProvider.platform.ios.views.transition('ios');
     $ionicConfigProvider.platform.android.views.transition('android');
 
+    // $ionicConfigProvider.backButton.previousTitleText(false);    /*去掉返回  文字*/
+
     $stateProvider
       .state('tab', {
         url: '/tab',
@@ -47,7 +50,12 @@ var app=angular.module('starter', ['ionic', 'ngCordova','starter.controllers',
         views: {
           'tab-news': {
             templateUrl: 'templates/tab-news.html',
-            controller: 'newsCtrl'
+            controller: 'newsCtrl',
+            resolve: {
+              'newsServiceData': function (newsService) {
+                return newsService.promise;
+              }
+            }
           }
         }
       })
@@ -72,6 +80,16 @@ var app=angular.module('starter', ['ionic', 'ngCordova','starter.controllers',
         }
       })
 
+      .state('tab.funny', {
+        url: '/funny',
+        views: {
+          'tab-funny': {
+            templateUrl: 'templates/tab-funny.html',
+            controller: 'funnyCtrl'
+          }
+        }
+      })
+
       .state('tab.fate', {
         url: '/fate',
         views: {
@@ -82,15 +100,36 @@ var app=angular.module('starter', ['ionic', 'ngCordova','starter.controllers',
         }
       })
 
-      .state('tab.funny', {
-        url: '/funny',
+      .state('tab.fate-fateScan', {
+        url: '/fateScan/:text',
         views: {
-          'tab-funny': {
-            templateUrl: 'templates/tab-funny.html',
-            controller: 'funnyCtrl'
+          'tab-fate': {
+            templateUrl: 'templates/tab-fate-scan.html',
+            controller: 'fateScanCtrl'
+          }
+        }
+      })
+
+      .state('tab.fate-about', {
+        url: '/fateAbout',
+        views: {
+          'tab-fate': {
+            templateUrl: 'templates/tab-fate-about.html',
+            controller: 'fateCtrl'
+          }
+        }
+      })
+
+      .state('tab.fate-contact', {
+        url: '/fateContact',
+        views: {
+          'tab-fate': {
+            templateUrl: 'templates/tab-fate-contact.html',
+            controller: 'fateCtrl'
           }
         }
       });
+
 
     $urlRouterProvider.otherwise('/tab/news');
 

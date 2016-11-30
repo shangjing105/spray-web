@@ -1,26 +1,35 @@
-<ion-header-bar class="bar-calm">
-  <h1 class="title">欢迎来到水花一现</h1>
-</ion-header-bar>
+<ion-view view-title="缘分">
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider">
+        功能
+      </div>
+      <a class="item item-icon-left" ng-click="barcodeScannerText()" ng-controller="fateCtrl">
+        <i class="icon icon-saoyisao"></i>
+        扫一扫
+      </a>
 
-<ion-view>
-  <ion-content class="padding">
-    <div>
-      <h3>>关于水花一现</h3>
-      <h5>精选: 功能如名字一样,精选网上各种app的精彩文章,暂时主要为技术文章,后面会陆续增加各种类型精彩文章,阅读更可以提高自己.</h5>
-      <h5>美图: 挑选各种美图,手机壁纸,满足你的欣赏眼光,以及下载作为壁纸的需求.</h5>
-      <h5>搞笑: 笑话,段子,内涵这里你需要的都有,时常观看,保持笑容.</h5>
-      <h5>缘分: 我和你的缘分.</h5>
-      <br>
-      <h3>>关于作者</h3>
-      <h5>&nbsp;&nbsp;&nbsp;&nbsp;此APP是我业余时间开发,经过很长一段时间的摸索和纠错才得以完成,因为此APP使用技术以前我也没有接触过,
-        完全是从新开始,这个APP的完成也是对我这段时间的努力的鼓舞.如果想要了解这个APP,欢迎联系我.</h5>
-      <br>
-      <h3>>联系作者</h3>
-      <h5>博客: <a href="http://www.shuihua.me" target="_blank">http://www.shuihua.me</a></h5>
-      <h5>微信公众号: <a href="#">shuihuayixina</a></h5>
-      <h5>邮箱: <a href="#">shangjing105@163.com</a></h5>
-      <h5>Github: <a href="https://github.com/shangjing105">https://github.com/shangjing105</a></h5>
-      <h5>QQ: <a href="#">787019494</a></h5>
+      <div class="item item-divider">
+        更多
+      </div>
+      <a class="item item-icon-left" href="#/tab/fateAbout">
+        <i class="icon icon-tubiaolunkuohua23"></i>
+        关于APP
+      </a>
+      <a class="item item-icon-left" ng-click="openBrowserShui('http://www.shuihua.me/')" ng-controller="fateCtrl">
+        <i class="icon icon-wodeboke"></i>
+        我的博客
+      </a>
+      <a class="item item-icon-left" ng-click="shareApp()" ng-controller="fateCtrl">
+        <i class="icon icon-fenxiang"></i>
+        分享APP
+      </a>
+      <a class="item item-icon-left" href="#/tab/fateContact">
+        <i class="icon icon-iconfontyonghu"></i>
+        联系作者
+      </a>
+
+
     </div>
 
   </ion-content>

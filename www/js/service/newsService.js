@@ -1,31 +1,64 @@
-  var newsService=angular.module('starter.newsService', []);
+var newsService = angular.module('starter.newsService', []);
 
-  //精选service
-  newsService.factory('newsService', ['$http',function($http) {
-    function news(params) {
+//精选service
+newsService.service('newsService', ['$http', function ($http) {
+
+  var myData=null;
+
+  var promise=$http.get(baseUrl + '/type').success(function (data) {
+      for (var i=0;i<data.type.length;i++) {
+        data.type[i].page=0;
+        data.type[i].typeId=data.type[i].id;
+        data.type[i].callback=function () {
+          console.log("停止....");
+        };
+        data.type[i].doRefresh=function () {
+            console.log("开始刷新...");
+            $this = this;
+            $this.page=0;
+            $http.get(baseUrl + '/news?page='+$this.page+'&typeId='+$this.typeId).success(function (data) {
+              if (data.result.status==200) {
+                $this.newsList= data.news;
+                $this.last=data.last;
+              }
+              $this.callback();
+            });
+          };
+        data.type[i].loadMoreData=function () {
+            console.log("加载更多...");
+            $this = this;
+            $this.page+=1;
+            $http.get(baseUrl + '/news?page='+$this.page+'&typeId='+$this.typeId).success(function (data) {
+              if (data.result.status==200) {
+                $this.newsList=$this.newsList.concat(data.news);
+                $this.last=data.last;
+              }
+              $this.callback();
+            });
+          };
+
+      }
+      myData=data.type;
+  });
+
+  return {
+    promise:promise,
+    setData: function (data) {
+      myData = data.type;
+    },
+    type: function () {
+      return myData;
+    },
+
+    news: function (page) {
       return $http({
-        method: 'GET',
-        url: baseUrl+'/news',
-        params:params,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        method:'GET',
+        url:baseUrl + '/news?page='+page,
       });
-    };
+    },
 
-    function newsDetails(id) {
-      return $http({
-        method: 'GET',
-        url: baseUrl+'/news/details/'+id,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      });
-    };
-
-    return{
-      news:news,
-      newsDetails:newsDetails
-    };
-
-  }]);
+    newsDetails: function (id) {
+      return $http.get(baseUrl + '/news/details/' + id);
+    }
+  };
+}]);
