@@ -4,9 +4,9 @@
 
 ![精选详情](http://o6n64wdk9.bkt.clouddn.com/8cc4709da9474162b3372ba8b6c5ff3a.PNG)
 
-![美图](http://upload-images.jianshu.io/upload_images/2728175-81e3645d4f7b695a.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![美图](http://o6n64wdk9.bkt.clouddn.com/2bef26cb21ee4d1a8232051a66a9716c.png)
 
-![美图详情](http://upload-images.jianshu.io/upload_images/2728175-6c353c40462edbad.PNG?imageMogr2/auto-orient/strip|imageView2/2/w/1240)
+![美图详情](http://o6n64wdk9.bkt.clouddn.com/c411b56a965d45cd88f195a7c2c6be2d.jpeg)
 
 ![笑话](http://o6n64wdk9.bkt.clouddn.com/6b53dca2e9834b9ba487a36e0810eaaa.PNG)
 
@@ -62,15 +62,6 @@ Ionic(ionicframework)一款接近原生的Html5移动App开发框架　会html c
 
 ![界面](http://upload-images.jianshu.io/upload_images/2728175-5a1b614b07841c7d?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# ionic技术完成构想
-
-对ionic技术有了初步的了解后，并自己运行起官方的demo后。我感觉挺简单的，并且ios，android都可以打包，这简直太方便了。
-
-于是我就仔细想想了我打算做的app的构想，并且慢慢将我要的界面原型设计出来了。原型图如下：
-
-![原型图](http://upload-images.jianshu.io/upload_images/2728175-e6e1a2295cf2d3d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-有了原型图我感觉离我要实现的目标近了一步，并且在我接下来的空闲时间一直不断的去完善，去解决开发过程中遇到的新问题。
 
 # ionic技术实现APP
 
@@ -95,7 +86,6 @@ Ionic(ionicframework)一款接近原生的Html5移动App开发框架　会html c
 
 * iOS是下载到照片里
 * android是下载到sd卡的水花一现目录里
-
 
 
 
