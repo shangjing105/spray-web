@@ -5,14 +5,15 @@
 	<a href="http://o6n64wdk9.bkt.clouddn.com/8cc4709da9474162b3372ba8b6c5ff3a.PNG"><img width="300" height="500" src="http://o6n64wdk9.bkt.clouddn.com/8cc4709da9474162b3372ba8b6c5ff3a.PNG"></a>
 </figure>
 
+<figure class="half">
 <img width="300" height="500" src="http://o6n64wdk9.bkt.clouddn.com/2bef26cb21ee4d1a8232051a66a9716c.png"/>
-
 <img width="300" height="500" src="http://o6n64wdk9.bkt.clouddn.com/c411b56a965d45cd88f195a7c2c6be2d.jpeg"/>
+</figure>
 
+<figure class="half">
 <img width="300" height="500" src="http://o6n64wdk9.bkt.clouddn.com/6b53dca2e9834b9ba487a36e0810eaaa.PNG"/>
-
 <img width="300" height="500" src="http://o6n64wdk9.bkt.clouddn.com/918adc878ce6499aa086b0dae7422c04.PNG"/>
-
+</figure>
 
 ## APP下载地址
 
