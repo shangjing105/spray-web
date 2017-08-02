@@ -17,7 +17,7 @@
 
 ![图标](http://upload-images.jianshu.io/upload_images/2728175-90fda6375d617e2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-[https://www.pgyer.com/0qj6](https://www.pgyer.com/0qj6)
+[https://www.pgyer.com/aR19](https://www.pgyer.com/aR19)
 
     android版可以下载,ios没有签名,暂时不能安装,我也只给自己手机安装一个。
 
